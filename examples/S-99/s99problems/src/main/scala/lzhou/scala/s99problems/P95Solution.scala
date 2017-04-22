@@ -1,29 +1,35 @@
 package lzhou.scala.s99problems
 
-class P09Solution {
-    def pack(list: List[Symbol]): List[List[Symbol]] = {
-        def helper(original: List[Symbol], same: List[Symbol], packed: List[List[Symbol]]): List[List[Symbol]] = {
-            if (original.size==0) {
-                if (same.size==0) {
-                    packed
-                } else {
-                    same :: packed
-                }
-            } else {
-                val last = original.last
-                val init = original.init
-                if (same.size==0 || same.head==last) {
-                    helper(init, last::same, packed)
-                } else {
-                    helper(init, List(last), same :: packed)
-                }
+class P95Solution {
+    def fullwords(num:Int): String = {
+        def helper(num:Int, result:String):String = {
+            def toFullWord(d:Int): String = d match {
+                case 0 => "zero"
+                case 1 => "one"
+                case 2 => "two"
+                case 3 => "three"
+                case 4 => "four"
+                case 5 => "five"
+                case 6 => "six"
+                case 7 => "seven"
+                case 8 => "eight"
+                case 9 => "nine"
+                case _ => throw new RuntimeException()
+            }
+            num match {
+                case 0=>result
+                case x if x<10 => toFullWord(x)+result
+                case _=>helper(num/10, "-"+toFullWord(num%10)+result)
             }
         }
-
-        helper(list, Nil, Nil)
+        
+        num match {
+            case 0=>"zero"
+            case _=>helper(num, "")
+        }
     }
 }
 
-object P09Solution {
-    def get(): P09Solution = new P09Solution()
+object P95Solution {
+    def get(): P95Solution = new P95Solution()
 }
