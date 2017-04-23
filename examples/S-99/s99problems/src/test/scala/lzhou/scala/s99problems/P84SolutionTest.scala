@@ -34,7 +34,11 @@ class P84SolutionTest extends FunSuite {
                         (Graph.termLabel[String, Int](List("a", "b", "c", "d"), List(("a","b",1),("c","d",3))),
                             Option.empty),
                         (Graph.termLabel[String, Int](List("a", "b", "c", "d"), List(("a","b",5),("a","c",3),("b","d",2),("c","d",4))),
-                            Option(Graph.termLabel[String, Int](List("a", "b", "c", "d"), List(("a","c",3),("b","d",2),("c","d",4)))))
+                            Option(Graph.termLabel[String, Int](List("a", "b", "c", "d"), List(("a","c",3),("b","d",2),("c","d",4))))),
+                        (Graph.termLabel[String, Int](List("a", "b", "c", "d", "e", "f", "g", "h"),
+                                List(("a","b",5),("b","c",2),("a","d",3),("b","e",4),("c","e",6),("d","e",7),("d","f",4),("d","g",3),("f","g",4),("e","h",6),("g","h",1))),
+                            Option(Graph.termLabel[String, Int](List("a", "b", "c", "d", "e", "f", "g", "h"),
+                                List(("a","d",3),("d","g",3),("g","h",1),("d","f",4),("a","b",5),("b","c",2),("b","e",4)))))
                         )
         tests.foreach(test=> {
             val minimalSpanningTree = P84Solution.get.minimalSpanningTree(test._1)
