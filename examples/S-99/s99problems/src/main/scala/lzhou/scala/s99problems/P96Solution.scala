@@ -18,6 +18,7 @@ class P96Solution {
         }
 
         token match {
+            case "" => false
             case t if (t.head.isLetter) =>
                 val tail = t.tail
                 if (tail.isEmpty) {

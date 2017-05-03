@@ -7,11 +7,11 @@ import graph.GraphBase
 import graph.Digraph
 
 abstract class P89Solution {
-    def isBipartile[T,U](g: GraphBase[T,U]): Boolean
+    def isBipartile[T,U](g: Graph[T,U]): Boolean
 }
 
 class P89SolutionImpl extends P89Solution {
-    def isBipartile[T,U](g: GraphBase[T,U]): Boolean = {
+    def isBipartile[T,U](g: Graph[T,U]): Boolean = {
         def helper(notColored:Set[g.Node], thisColor:Set[g.Node], oppositeColor:Set[g.Node], thisLevel: List[g.Node]): Boolean = {
             if (notColored.size == 0) {
                 //The last check is important
